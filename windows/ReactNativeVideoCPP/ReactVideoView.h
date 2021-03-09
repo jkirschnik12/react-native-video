@@ -3,6 +3,7 @@
 #include <functional>
 using namespace winrt;
 using namespace Microsoft::ReactNative;
+using namespace Windows::Storage::Streams;
 
 namespace winrt::ReactNativeVideoCPP::implementation {
 struct ReactVideoView : ReactVideoViewT<ReactVideoView> {
@@ -18,7 +19,7 @@ struct ReactVideoView : ReactVideoViewT<ReactVideoView> {
   void Set_FullScreen(bool fullScreen);
   void Set_ProgressUpdateInterval(int64_t interval);
   void Set_AutoPlay(bool autoPlay);
-
+  void Set_Stream(IRandomAccessStream stream, hstring const& mimeType);
  private:
   hstring m_uriString;
   bool m_isLoopingEnabled = false;

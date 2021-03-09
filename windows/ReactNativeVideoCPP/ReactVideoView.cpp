@@ -241,4 +241,10 @@ void ReactVideoView::runOnQueue(std::function<void()>&& func) {
         winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, [func = std::move(func)]() { func(); });
 }
 
+void ReactVideoView::Set_Stream(IRandomAccessStream stream, hstring const& mimeType)
+{
+  if (m_player != nullptr) {
+    m_player.Source(MediaSource::CreateFromStream(stream, mimeType));
+  }
+}
 } // namespace winrt::ReactNativeVideoCPP::implementation

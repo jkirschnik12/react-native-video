@@ -35,7 +35,7 @@ struct ReactVideoViewManager : winrt::implements<
       IMapView<winrt::hstring, winrt::Microsoft::ReactNative::ViewManagerPropertyType>
       NativeProps() noexcept;
 
-  void UpdateProperties(
+  IAsyncAction UpdateProperties(
       winrt::Windows::UI::Xaml::FrameworkElement const &view,
       winrt::Microsoft::ReactNative::IJSValueReader const &propertyMapReader) noexcept;
 
