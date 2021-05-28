@@ -20,6 +20,8 @@ struct ReactVideoView : ReactVideoViewT<ReactVideoView> {
   void Set_ProgressUpdateInterval(int64_t interval);
   void Set_AutoPlay(bool autoPlay);
   void Set_Stream(IRandomAccessStream stream, hstring const& mimeType);
+  void Set_PlaybackRate(double rate);
+
  private:
   hstring m_uriString;
   bool m_isLoopingEnabled = false;
