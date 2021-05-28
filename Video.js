@@ -253,12 +253,6 @@ export default class Video extends Component {
       }
     }
   }
-  getViewManagerConfig = viewManagerName => {
-    if (!NativeModules.UIManager.getViewManagerConfig) {
-      return NativeModules.UIManager[viewManagerName];
-    }
-    return NativeModules.UIManager.getViewManagerConfig(viewManagerName);
-  };
 
   render() {
     const resizeMode = this.props.resizeMode;
@@ -277,23 +271,9 @@ export default class Video extends Component {
     const isNetwork = !!(uri && uri.match(/^https?:/));
     const isAsset = !!(uri && uri.match(/^(assets-library|ipod-library|file|content|ms-appx|ms-appdata):/));
 
-    let nativeResizeMode;
-    const RCTVideoInstance = this.getViewManagerConfig('RCTVideo');
-
-    if (resizeMode === VideoResizeMode.stretch) {
-      nativeResizeMode = RCTVideoInstance.Constants.ScaleToFill;
-    } else if (resizeMode === VideoResizeMode.contain) {
-      nativeResizeMode = RCTVideoInstance.Constants.ScaleAspectFit;
-    } else if (resizeMode === VideoResizeMode.cover) {
-      nativeResizeMode = RCTVideoInstance.Constants.ScaleAspectFill;
-    } else {
-      nativeResizeMode = RCTVideoInstance.Constants.ScaleNone;
-    }
-
     const nativeProps = Object.assign({}, this.props);
     Object.assign(nativeProps, {
       style: [styles.base, nativeProps.style],
-      resizeMode: nativeResizeMode,
       src: {
         uri,
         isNetwork,
